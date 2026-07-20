@@ -1,0 +1,58 @@
+generated: '2026-07-19'
+method: searched
+source: https://lightning.ai/docs/platform/developers/cli
+docs:
+- https://lightning.ai/docs/platform/developers/cli
+- https://lightning.ai/docs/platform/inference/model-apis
+- https://github.com/Lightning-AI/skills/blob/main/lightning-llm-gateway/SKILL.md
+notes: >-
+  Lightning AI runs TWO distinct auth schemes and its own docs warn not to conflate them.
+  Platform SDK/CLI/REST calls (Studios, Jobs, Deployments, Sandboxes) use HTTP Basic with
+  `LIGHTNING_USER_ID` as the user and `LIGHTNING_API_KEY` as the password — both are required.
+  The OpenAI-compatible Model APIs (LLM gateway) use a Bearer token minted separately via
+  `lightning api-key get`. No OAuth 2.0 or OpenID Connect surface is published: there is no
+  /.well-known/openid-configuration and no /.well-known/oauth-authorization-server (see
+  well-known/lightningai-well-known.yml), so there is no scopes/ artifact for this provider.
+summary:
+  types: [http-basic, http-bearer]
+  api_key_in: [header, environment]
+  oauth2_flows: []
+schemes:
+- name: platformBasicAuth
+  type: http
+  scheme: basic
+  applies_to: Lightning AI Platform API (https://lightning.ai/api/v1), SDK and CLI
+  credentials:
+  - LIGHTNING_USER_ID
+  - LIGHTNING_API_KEY
+  interactive_login: lightning login
+  headless: export LIGHTNING_USER_ID=... LIGHTNING_API_KEY=...
+  source: https://lightning.ai/docs/platform/developers/cli
+- name: modelApiBearer
+  type: http
+  scheme: bearer
+  applies_to: Lightning Model APIs / LLM gateway (https://lightning.ai/v1)
+  header: 'Authorization: Bearer <LIGHTNING_API_KEY>'
+  key_management:
+  - lightning api-key get [--org NAME]
+  - lightning api-key create --org NAME --name my-key
+  - lightning api-key list
+  - lightning api-key delete <KEY_ID>
+  key_console: https://lightning.ai/lightning-ai/model-apis/models?showApiKey=true
+  scoping: >-
+    Model-API keys are scoped to an organization; pass --org or set LIGHTNING_ORG when the user
+    belongs to more than one org.
+  verified: >-
+    GET https://lightning.ai/v1/models without a token returns 401
+    {"code":16,"message":"unauthenticated","details":[]}
+anonymous_endpoints:
+- method: GET
+  url: https://lightning.ai/api/v1/models
+  note: public OpenAI-style model catalog, returns 200 without credentials
+- method: GET
+  url: https://lightning.ai/api/v1/docs/worlds
+  note: public docs worlds registry, returns 200 without credentials
+related:
+- conventions/lightningai-conventions.yml
+- cli/lightningai-cli.yml
+- rate-limits/lightningai-rate-limits.yml
