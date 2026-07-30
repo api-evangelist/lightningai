@@ -1,22 +1,91 @@
 aid: lightningai
 name: Lightning.AI
-description: 'Lightning.AI is a company surfaced as a portfolio company of bain-capital-ventures and added
-  to the API Evangelist network as a stub for enrichment. Sector: ai-infrastructure. This profile is a
-  lead awaiting the enrichment pipeline.'
+description: >-
+  Lightning AI is an AI development cloud from the creators of PyTorch Lightning. The platform
+  bundles browser-based GPU Studios, batch and multi-node training jobs, autoscaled model and
+  container deployments, ephemeral code-execution Sandboxes, teamspace data and model registries,
+  and an OpenAI-compatible LLM gateway (Model APIs) that fronts hosted models from OpenAI,
+  Anthropic, Google and open-weights providers behind one key and one bill. Developers reach the
+  platform through the lightning-sdk Python package and its lightning CLI, an @lightningai/sdk
+  TypeScript SDK for Sandboxes, and a v1 REST surface reachable with the `lightning api` escape
+  hatch. Lightning AI also publishes an llms.txt, a docs manifest registry, and six first-party
+  Agent Skills in SKILL.md format for coding agents.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://avatars.githubusercontent.com/u/58386951?s=200&v=4
 url: https://raw.githubusercontent.com/api-evangelist/lightningai/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - bain-capital-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: enrichment-pipeline
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Ai Infrastructure
-apis: []
+- Artificial Intelligence
+- Machine Learning
+- GPU Cloud
+- Model Inference
+- LLM Gateway
+- Developer Tools
+- MLOps
+- Deployment
+apis:
+- aid: lightningai:model-apis
+  name: Lightning AI Model APIs
+  description: >-
+    OpenAI-compatible LLM gateway. Call hosted models from OpenAI, Anthropic, Google and
+    open-weights providers through a single Bearer-authenticated endpoint with one bill, using
+    provider/model names such as openai/gpt-5 or anthropic/claude-opus-4-8. Every user receives
+    30 million free tokens per month. The public model catalog is served unauthenticated at
+    https://lightning.ai/api/v1/models.
+  humanURL: https://lightning.ai/docs/platform/inference/model-apis
+  baseURL: https://lightning.ai/v1
+  tags:
+  - LLM Gateway
+  - Model Inference
+  - Artificial Intelligence
+  properties:
+  - type: Documentation
+    url: https://lightning.ai/docs/platform/inference/model-apis
+  - type: RateLimits
+    url: rate-limits/lightningai-rate-limits.yml
+  - type: Authentication
+    url: authentication/lightningai-authentication.yml
+- aid: lightningai:platform-api
+  name: Lightning AI Platform API
+  description: >-
+    The v1 REST surface behind the Lightning AI platform — Studios, Jobs, multi-machine training,
+    Deployments, Sandboxes, teamspaces, memberships, datasets and the model checkpoint registry.
+    Authenticated with HTTP Basic using LIGHTNING_USER_ID and LIGHTNING_API_KEY, and reachable
+    from the CLI with `lightning api <endpoint>` for anything the SDK does not wrap.
+  humanURL: https://lightning.ai/docs/platform/developers/sdk
+  baseURL: https://lightning.ai/api/v1
+  tags:
+  - Developer Tools
+  - MLOps
+  - Deployment
+  properties:
+  - type: Documentation
+    url: https://lightning.ai/docs/platform/developers/sdk
+  - type: Authentication
+    url: authentication/lightningai-authentication.yml
+  - type: Conventions
+    url: conventions/lightningai-conventions.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +94,52 @@ maintainers:
 common:
 - type: Website
   url: https://lightning.ai/
+- type: DeveloperPortal
+  url: https://lightning.ai/docs/platform/developers
+- type: Documentation
+  url: https://lightning.ai/docs
+- type: APIReference
+  url: https://lightning.ai/docs/overview/sdk-reference
+- type: GettingStarted
+  url: https://lightning.ai/docs/platform/overview/getting-started
+- type: Blog
+  url: https://lightning.ai/blog
+- type: GitHubOrganization
+  url: https://github.com/Lightning-AI
+- type: PrivacyPolicy
+  url: https://www.grid.ai/privacy-policy/
+- type: StatusPage
+  url: https://status.lightning.ai/
+- type: Compliance
+  url: https://lightning.ai/docs/platform/security/compliance
+- type: LLMsTxt
+  url: llms/lightningai-llms.txt
+- type: Packages
+  url: packages/lightningai-packages.yml
+- type: SDKs
+  url: packages/lightningai-packages.yml
+- type: CLI
+  url: cli/lightningai-cli.yml
+- type: WellKnown
+  url: well-known/lightningai-well-known.yml
+- type: Authentication
+  url: authentication/lightningai-authentication.yml
+- type: Conventions
+  url: conventions/lightningai-conventions.yml
+- type: RateLimits
+  url: rate-limits/lightningai-rate-limits.yml
+- type: Conformance
+  url: conformance/lightningai-conformance.yml
+- type: Lifecycle
+  url: lifecycle/lightningai-lifecycle.yml
+- type: Sandbox
+  url: sandbox/lightningai-sandbox.yml
+- type: DomainSecurity
+  url: security/lightningai-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
