@@ -1,0 +1,51 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of https://lightning.ai/.well-known/*
+host: https://lightning.ai
+notes: >-
+  lightning.ai serves a single-page-application catch-all: every unmatched path returns HTTP 200
+  with the ~19.5 KB `text/html` SPA shell rather than a 404. Each /.well-known/ path below
+  therefore returns a nominal 200 but NO well-known document — these are soft-404s and are
+  recorded as not-found. Verified by inspecting the response body and Content-Type. No
+  security.txt, no OIDC/OAuth discovery, no API catalog and no ai-plugin manifest are published.
+documents:
+- path: /.well-known/security.txt
+  status: 200
+  found: false
+  content_type: text/html
+  note: SPA shell (soft 404) — no RFC 9116 document
+- path: /.well-known/openid-configuration
+  status: 200
+  found: false
+  content_type: text/html
+  note: SPA shell (soft 404) — no OIDC discovery document
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  found: false
+  content_type: text/html
+  note: SPA shell (soft 404) — no RFC 8414 document
+- path: /.well-known/api-catalog
+  status: 200
+  found: false
+  content_type: text/html
+  note: SPA shell (soft 404) — no RFC 9727 API catalog
+- path: /.well-known/ai-plugin.json
+  status: 200
+  found: false
+  content_type: text/html
+  note: SPA shell (soft 404) — no plugin manifest
+ai_discovery:
+- path: /llms.txt
+  status: 200
+  found: true
+  content_type: text/plain
+  file: ../llms/lightningai-llms.txt
+  note: >-
+    Lightning AI does publish a real llms.txt at the site root (text/plain), which additionally
+    advertises a docs "worlds" registry at https://lightning.ai/api/v1/docs/worlds and per-world
+    manifests such as https://lightning.ai/docs/manifests/platform.json.
+- path: /api/v1/docs/worlds
+  status: 200
+  found: true
+  content_type: application/json
+  note: JSON registry of every docs world with its roots and manifestUrl

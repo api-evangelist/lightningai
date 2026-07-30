@@ -1,0 +1,109 @@
+generated: '2026-07-19'
+method: searched
+source: https://pypi.org/ + https://registry.npmjs.org/ + https://github.com/Lightning-AI
+notes: >-
+  First-party Lightning AI client libraries and frameworks. The platform SDK + CLI ship as the
+  PyPI package `lightning-sdk` (the `lightning` binary) and the npm package `@lightningai/sdk`
+  (Sandbox SDK). The remaining entries are the Lightning AI open-source model/training/serving
+  libraries published by the same org. The npm packages `lightning-sdk` and `lightning-ai` are
+  NOT Lightning AI (a third-party POS SDK and an npm security-holding placeholder) and are
+  deliberately excluded.
+packages:
+- language: python
+  registry: pypi
+  name: lightning-sdk
+  version: 2026.7.9.post0
+  url: https://pypi.org/project/lightning-sdk/
+  install: pip install lightning-sdk -U
+  official: true
+  role: platform SDK + `lightning` CLI (Studios, Jobs, Deployments, Sandboxes, Models)
+  source: https://github.com/Lightning-AI/sdk
+- language: javascript
+  registry: npm
+  name: "@lightningai/sdk"
+  version: 2026.7.9-post0
+  url: https://www.npmjs.com/package/@lightningai/sdk
+  install: npm install @lightningai/sdk
+  official: true
+  role: Lightning AI Sandbox SDK — create and manage sandboxes, run commands, read/write files
+  source: https://github.com/Lightning-AI/sdk
+- language: python
+  registry: pypi
+  name: litai
+  version: 0.0.10
+  url: https://pypi.org/project/litai/
+  install: pip install litai
+  official: true
+  role: LLM router + minimal agent framework; client for the Lightning Model APIs
+  source: https://github.com/Lightning-AI/litAI
+- language: python
+  registry: pypi
+  name: lightning
+  version: 2.6.5
+  url: https://pypi.org/project/lightning/
+  install: pip install lightning
+  official: true
+  role: Lightning (PyTorch Lightning + Fabric) training framework
+  source: https://github.com/Lightning-AI/lightning
+- language: python
+  registry: pypi
+  name: pytorch-lightning
+  version: 2.6.5
+  url: https://pypi.org/project/pytorch-lightning/
+  install: pip install pytorch-lightning
+  official: true
+  role: PyTorch Lightning training framework
+  source: https://github.com/Lightning-AI/lightning
+- language: python
+  registry: pypi
+  name: litserve
+  version: 0.2.17
+  url: https://pypi.org/project/litserve/
+  install: pip install litserve
+  official: true
+  role: minimal framework for building custom AI inference servers
+  source: https://github.com/Lightning-AI/LitServe
+- language: python
+  registry: pypi
+  name: litdata
+  version: 0.2.61
+  url: https://pypi.org/project/litdata/
+  install: pip install litdata
+  official: true
+  role: stream and process datasets at scale
+  source: https://github.com/Lightning-AI/litData
+- language: python
+  registry: pypi
+  name: torchmetrics
+  version: 1.9.0
+  url: https://pypi.org/project/torchmetrics/
+  install: pip install torchmetrics
+  official: true
+  role: 90+ PyTorch metrics optimized for distributed training
+  source: https://github.com/Lightning-AI/torchmetrics
+- language: python
+  registry: pypi
+  name: lightning-thunder
+  url: https://pypi.org/project/lightning-thunder/
+  install: pip install lightning-thunder
+  official: true
+  role: PyTorch compiler accelerating training and inference
+  source: https://github.com/Lightning-AI/lightning-thunder
+- language: python
+  registry: pypi
+  name: litgpt
+  version: 0.5.13
+  url: https://pypi.org/project/litgpt/
+  install: pip install litgpt
+  official: true
+  role: 20+ high-performance LLMs with pretrain/finetune/deploy recipes
+  source: https://github.com/Lightning-AI/litgpt
+not_first_party:
+- registry: npm
+  name: lightning-sdk
+  url: https://www.npmjs.com/package/lightning-sdk
+  reason: unrelated merchant POS SDK, last published 2022
+- registry: npm
+  name: lightning-ai
+  url: https://www.npmjs.com/package/lightning-ai
+  reason: npm security holding package

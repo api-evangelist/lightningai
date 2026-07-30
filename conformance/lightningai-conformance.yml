@@ -1,0 +1,84 @@
+generated: '2026-07-19'
+method: searched
+source: https://lightning.ai/docs/platform/security/compliance
+docs: https://lightning.ai/docs/platform/security/compliance
+notes: >-
+  Compliance posture is published on the Lightning AI docs compliance page; certification reports
+  themselves are gated behind a due-diligence package requested from sales@lightning.ai. Technical
+  standards below are asserted only where a live probe or the public docs give direct evidence —
+  Lightning AI publishes no OpenAPI, no OAuth/OIDC discovery and no AsyncAPI, so those are false.
+compliance_program:
+  url: https://lightning.ai/docs/platform/security/compliance
+  due_diligence_package: sales@lightning.ai
+  includes:
+  - ISO certifications
+  - annual penetration test confirmation letter
+  - Enterprise Security Guide
+  - HIPAA report
+  - SOC 2 Type II report
+certifications:
+- id: soc2-type2
+  name: SOC 2 Type II
+  status: certified
+  evidence: 'docs compliance page: "Lightning AI is SOC2 certified"'
+  detail: https://lightning.ai/docs/platform/security/compliance/soc2-type2.md
+- id: hipaa
+  name: HIPAA
+  status: certified
+  evidence: 'docs compliance page: "Lightning AI is HIPAA certified"'
+  detail: https://lightning.ai/docs/platform/security/compliance/hipaa-compliance.md
+- id: iso
+  name: ISO certifications
+  status: claimed
+  evidence: listed as part of the due diligence package
+- id: cpra
+  name: California Privacy Rights Act (Prop 24)
+  status: compliant
+  evidence: 'docs compliance page: "compliant with the 2020 ruling on Prop 24"'
+- id: gdpr-dpa
+  name: Data Processing Addendum
+  status: available
+  evidence: Lightning AI can execute a DPA
+  detail: https://lightning.ai/docs/platform/security/compliance/data-processing-addendum.md
+privacy:
+  policy: https://www.grid.ai/privacy-policy/
+  subprocessors: https://lightning.ai/legal/sub-processors/
+  data_retention: https://lightning.ai/docs/platform/security/privacy/data-retention-policy.md
+standards:
+- id: openai-compatible-api
+  conforms: true
+  evidence: >-
+    Model APIs are OpenAI-compatible; https://lightning.ai/api/v1/models returns an OpenAI-style
+    {"object":"list","data":[...]} model catalog and the docs recommend the OpenAI Python SDK
+- id: oauth2
+  conforms: false
+  evidence: no OAuth 2.0 flows documented; no /.well-known/oauth-authorization-server
+- id: oidc
+  conforms: false
+  evidence: no /.well-known/openid-configuration
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use the gRPC-gateway {code,message,details} envelope, not application/problem+json
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns the SPA shell (soft 404)
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: no deprecation or Sunset header policy published
+- id: llms-txt
+  conforms: true
+  evidence: https://lightning.ai/llms.txt is served as text/plain
+- id: agent-skills
+  conforms: true
+  evidence: >-
+    six SKILL.md agent skills published at https://github.com/Lightning-AI/skills in the
+    SKILL.md format
+- id: idempotency
+  conforms: false
+  evidence: no idempotency-key contract documented
+- id: asyncapi
+  conforms: false
+  evidence: no event, streaming or webhook catalog published
+related:
+- security/lightningai-domain-security.yml
+- conventions/lightningai-conventions.yml

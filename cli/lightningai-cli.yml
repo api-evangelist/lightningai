@@ -1,0 +1,95 @@
+generated: '2026-07-19'
+method: searched
+source: https://lightning.ai/docs/platform/developers/cli
+docs: https://lightning.ai/docs/platform/developers/cli
+repository: https://github.com/Lightning-AI/sdk
+name: lightning
+description: >-
+  The Lightning CLI manages Studios, Jobs, Deployments, Sandboxes, Models and VMs from the
+  terminal. It ships inside the `lightning-sdk` Python package and can also be run without
+  installing via `uvx lightning-sdk`.
+install:
+- method: pip
+  command: pip install lightning-sdk -U
+- method: uvx
+  command: uvx lightning-sdk
+package: packages/lightningai-packages.yml
+authenticate:
+- command: lightning login
+  note: interactive browser login
+- method: environment
+  variables:
+  - LIGHTNING_USER_ID
+  - LIGHTNING_API_KEY
+usage: lightning [command]
+help: lightning COMMAND --help
+notes: >-
+  Command groups below are taken from the CLI docs and from the source layout of
+  Lightning-AI/sdk (python/lightning_sdk/cli/*) plus the provider's published Agent Skills. The
+  legacy command tree (python/lightning_sdk/cli/legacy) is retained for backwards compatibility
+  and is not enumerated here.
+commands:
+- group: studio
+  purpose: create, run and manage cloud GPU Studios
+  subcommands: [create, list, ls, start, stop, delete, rm, connect, switch, ssh, cp, open]
+- group: job
+  purpose: launch and manage batch jobs
+  subcommands: [run, list, inspect, logs, stop, delete]
+- group: mmt
+  purpose: multi-machine training jobs
+  subcommands: [run, list, inspect, stop, delete]
+- group: deployment
+  purpose: deploy and operate model/container endpoints
+  subcommands: [create, list, inspect, logs, update, reload-weights, delete]
+- group: sandbox
+  purpose: ephemeral isolated Linux environments for code execution
+  subcommands: [create, list, start, stop, run, command, commands, logs, snapshot, delete]
+- group: model
+  purpose: model checkpoint registry in a teamspace
+  subcommands: [upload, download]
+- group: api-key
+  purpose: manage Model API keys
+  subcommands: [get, create, list, delete]
+- group: api
+  purpose: raw REST escape hatch against the platform API
+  subcommands: [request, deploy, dockerize]
+- group: dataset
+  purpose: teamspace datasets
+  subcommands: [upload, download]
+- group: file
+  purpose: single-file transfer
+  subcommands: [upload, download]
+- group: folder
+  purpose: folder transfer
+  subcommands: [upload, download]
+- group: container
+  purpose: container images
+  subcommands: [upload, download, list, delete]
+- group: cp
+  purpose: copy files to and from teamspaces and Studios (supports -r)
+- group: machine
+  purpose: available machine types
+  subcommands: [list]
+- group: ssh
+  purpose: SSH key and config management
+  subcommands: [configure, generate]
+- group: config
+  purpose: local CLI configuration
+  subcommands: [get, set, show]
+- group: license
+  purpose: license management
+  subcommands: [get, set, list, download, download-all]
+- group: login
+  purpose: authenticate the CLI
+key_flows:
+- name: raw REST call
+  command: lightning api /v1/memberships
+  note: escape hatch for any platform endpoint the SDK does not wrap
+- name: mint a Model API key
+  command: lightning api-key get [--org NAME]
+- name: run a GPU job
+  command: lightning job run
+related:
+- packages/lightningai-packages.yml
+- skills/_index.yml
+- authentication/lightningai-authentication.yml

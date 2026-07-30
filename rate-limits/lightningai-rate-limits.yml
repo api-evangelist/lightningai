@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: searched
+source: https://lightning.ai/docs/platform/inference/model-apis
+docs: https://lightning.ai/docs/platform/inference/model-apis
+api: Lightning Model APIs (LLM gateway)
+notes: >-
+  Published per-plan limits for the Lightning Model APIs, captured verbatim from the Model APIs
+  documentation table. Every user also receives 30 million free tokens per month. No rate-limit
+  response headers are documented; see conventions/lightningai-conventions.yml.
+free_allowance:
+  tokens_per_month: 30000000
+  applies_to: every user
+rate_limits:
+- plan: Free
+  requests_per_minute: 15
+  tokens_per_minute: 120000
+- plan: Pro
+  requests_per_minute: 20
+  tokens_per_minute: 120000
+- plan: Teams
+  requests_per_minute: 30
+  tokens_per_minute: 150000
+- plan: Enterprise
+  requests_per_minute: 300
+  tokens_per_minute: null
+  tokens_per_minute_note: Unlimited
+limit_count: 4

@@ -1,0 +1,58 @@
+generated: '2026-07-19'
+method: searched
+source: https://lightning.ai/docs/platform/build/sandbox
+docs:
+- https://lightning.ai/docs/platform/build/sandbox
+- https://lightning.ai/docs/platform/inference/model-apis
+- https://lightning.ai/models
+notes: >-
+  Lightning AI does NOT operate a payments-style test/live key separation, and publishes no magic
+  test identifiers, test cards or fixture-trigger tooling. What it does publish is a genuine
+  free-tier console and a first-class ephemeral execution product, both captured here. Nothing
+  below is invented — every value is published by the provider.
+test_vs_live:
+  separated: false
+  detail: >-
+    A single set of credentials (LIGHTNING_USER_ID + LIGHTNING_API_KEY for the platform, a Bearer
+    key for the Model APIs) serves all usage. There is no test-mode key prefix and no
+    test-vs-live mode switch.
+free_tier:
+  model_apis:
+    free_tokens_per_month: 30000000
+    applies_to: every user
+    source: https://lightning.ai/docs/platform/inference/model-apis
+  rate_limits: rate-limits/lightningai-rate-limits.yml
+console:
+- name: Lightning Studios
+  url: https://lightning.ai/
+  type: hosted browser IDE / console
+  detail: >-
+    Persistent cloud development environments (CPU and GPU) usable directly in the browser; the
+    primary interactive surface for the platform.
+  docs: https://lightning.ai/docs/platform/build/ai-studio
+- name: Model APIs catalog
+  url: https://lightning.ai/models
+  type: model catalog / playground
+  detail: >-
+    Browse the hosted model catalog and mint a Model API key. A public unauthenticated JSON
+    version of the same catalog is served at https://lightning.ai/api/v1/models.
+ephemeral_environments:
+- name: Lightning Sandboxes
+  type: isolated ephemeral Linux VMs
+  detail: >-
+    On-demand isolated environments with their own filesystem, network stack and dedicated
+    compute — intended for running untrusted code, agent workloads and ephemeral build/test
+    environments. Supports filesystem snapshot capture and restore.
+  docs: https://lightning.ai/docs/platform/build/sandbox
+  cli: lightning sandbox create | run | snapshot | delete
+  sdks:
+  - pypi: lightning-sdk
+  - npm: "@lightningai/sdk"
+  skill: skills/lightningai-sandboxes.md
+test_values: []
+test_clocks:
+  supported: false
+related:
+- rate-limits/lightningai-rate-limits.yml
+- cli/lightningai-cli.yml
+- skills/_index.yml

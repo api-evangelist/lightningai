@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: searched
+source: https://lightning.ai/docs/platform + live probes
+notes: >-
+  Lightning AI publishes a hosted status page and pins both HTTP surfaces at /v1, but does not
+  publish a versioning policy, a deprecation/sunset policy, an SLA document or a dated product
+  changelog on its public docs. Those are recorded as not-published rather than inferred. The
+  open-source libraries version independently on PyPI and GitHub Releases.
+versioning:
+  scheme: uri-path
+  current: v1
+  policy_url: null
+  detail: >-
+    Both https://lightning.ai/api/v1 (platform) and https://lightning.ai/v1 (Model APIs) are
+    pinned to v1. No published version-support or version-negotiation policy.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  detail: >-
+    No RFC 8594 Sunset/Deprecation header contract and no deprecation policy page is published.
+    The CLI does maintain an explicit legacy command tree
+    (Lightning-AI/sdk python/lightning_sdk/cli/legacy) with redirects, which is the only visible
+    deprecation practice.
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  url: https://status.lightning.ai/
+  verified: 'HTTP 200, title "Lightning AI Status"'
+changelog:
+  url: null
+  detail: >-
+    No dated platform changelog is published in the docs manifest. Release history for the
+    open-source libraries is on GitHub Releases per repository.
+open_source_releases:
+- https://github.com/Lightning-AI/pytorch-lightning/releases
+- https://github.com/Lightning-AI/sdk/releases
+- https://github.com/Lightning-AI/LitServe/releases
+deprecated_operations: []
+related:
+- conventions/lightningai-conventions.yml
+- packages/lightningai-packages.yml
